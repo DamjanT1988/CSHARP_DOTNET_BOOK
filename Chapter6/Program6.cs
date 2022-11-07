@@ -326,13 +326,67 @@ namespace Basics
             }
 
 
+            //--INHERTING AND EXTENDING .NET TYPES 215
+            /*
+            .NET has prebuilt class libraries containing hundreds of thousands of types. Rather
+            than creating your own completely new types, you can often get a head start by
+            deriving from one of Microsoft's types to inherit some or all of its behavior and then
+            overriding or extending it.
+             */
+
+            //inheriting exceptions 216-personexception.cs
+            try
+            {
+                john.TimeTravel(new DateTime(1999, 12, 31));
+                john.TimeTravel(new DateTime(1950, 12, 25));
+            }
+            catch (PersonException ex)
+            {
+                WriteLine(ex.Message);
+            }
 
 
+            //EXTENDING TYPES WHEN YOU CAN'T INHERIT 217
+            /*
+            Earlier, we saw how the sealed modifier can be used to prevent inheritance.
+            Microsoft has applied the sealed keyword to the System.String class so that no
+            one can inherit and potentially break the behavior of strings.
+            Can we still add new methods to strings? Yes, if we use a language feature named
+            extension methods, which was introduced with C# 3.0.
+             */
+
+            //using static methods to reuse functionality 217
+            string email1 = "pamela@test.com";
+            string email2 = "ian&test.com";
+            
+            WriteLine(
+            "{0} is a valid e-mail address: {1}",
+            arg0: email1,
+            arg1: StringExtensions.IsValidEmail(email1));
+            
+            WriteLine(
+            "{0} is a valid e-mail address: {1}",
+            arg0: email2,
+            arg1: StringExtensions.IsValidEmail(email2));
 
 
+            //using extension methods to reuse functionality 219
+            WriteLine(
+            "{0} is a valid e-mail address: {1}",
+            arg0: email1,
+            arg1: email1.IsValidEmail());
 
+            WriteLine(
+            "{0} is a valid e-mail address: {1}",
+            arg0: email2,
+            arg1: email2.IsValidEmail());
 
-
+            /*
+            Extension methods cannot replace or override existing instance methods, so you
+            cannot, for example, redefine the Insert method. The extension method will appear
+            as an overload in IntelliSense, but an instance method will be called in preference to
+            an extension method with the same name and signature.
+             */
 
 
 
