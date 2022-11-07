@@ -3,10 +3,11 @@ using System;
 using static System.Console;
 //155
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace PacktLibrary
 {
-    public partial class Person : Object , IComparable<Person>//192
+    public partial class Person : Object, IComparable<Person>//192
     {
         //--STORING DATA WITHIN FIELDS 150
 
@@ -224,5 +225,60 @@ namespace PacktLibrary
         {
             return Name.CompareTo(other.Name);
         }
+
+        //210
+        // overridden methods
+        public override string ToString()
+        {
+            return $"{Name} is a {base.ToString()}";
+        }
+
+        public class Singer
+        {
+            // virtual allows this method to be overridden
+            public virtual void Sing()
+            {
+                WriteLine("Singing...");
+            }
+        }
+        public class LadyGaga : Singer
+        {
+            // sealed prevents overriding the method in subclasses
+            public sealed override void Sing()
+            {
+                WriteLine("Singing with style...");
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

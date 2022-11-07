@@ -150,7 +150,7 @@ namespace Basics
             new Person { Name = "Adam" },
             new Person { Name = "Richard" }
             };
-            
+
             WriteLine("Initial list of people:");
             foreach (var person in people)
             {
@@ -181,7 +181,7 @@ namespace Basics
             var t1 = new Thing();
             t1.Data = 42;
             WriteLine($"Thing with an integer: {t1.Process(42)}");
-            
+
             var t2 = new Thing();
             t2.Data = "apple";
             WriteLine($"Thing with a string: {t2.Process("apple")}");
@@ -190,11 +190,11 @@ namespace Basics
             //working with generic types 199
             var gt1 = new GenericThing<int>();
             gt1.Data = 42;
-            WriteLine($"GenericThing with an integer:{ gt1.Process(42)}");
+            WriteLine($"GenericThing with an integer:{gt1.Process(42)}");
 
             var gt2 = new GenericThing<string>();
             gt2.Data = "apple";
-            WriteLine($"GenericThing with a string:{ gt2.Process("apple")}");
+            WriteLine($"GenericThing with a string:{gt2.Process("apple")}");
 
             /*
             °° When instantiating an instance of a generic type, the developer
@@ -213,7 +213,7 @@ namespace Basics
             WriteLine("{0} squared is {1}",
             arg0: number1,
             arg1: Squarer.Square<string>(number1));
-            
+
             byte number2 = 3;
             WriteLine("{0} squared is {1}",
             arg0: number2,
@@ -233,7 +233,7 @@ namespace Basics
             var dv1 = new DisplacementVector(3, 5);
             var dv2 = new DisplacementVector(-2, 7);
             var dv3 = dv1 + dv2;
-            WriteLine($"({dv1.X}, {dv1.Y}) + ({dv2.X}, {dv2.Y}) = ({ dv3.X}, { dv3.Y})");
+            WriteLine($"({dv1.X}, {dv1.Y}) + ({dv2.X}, {dv2.Y}) = ({dv3.X}, {dv3.Y})");
 
 
             //releasing unmanaged resources 205-animal.cs
@@ -260,6 +260,72 @@ namespace Basics
                 DateOfBirth = new DateTime(1990, 7, 28)
             };
             john.WriteToConsole();
+
+
+            //expanding classes 208
+            john.EmployeeCode = "JJ001";
+            john.HireDate = new DateTime(2014, 11, 23);
+            WriteLine($"{john.Name} was hired on {john.HireDate:dd / MM / yy}");
+
+
+            //hiding members 209--
+
+
+            //overriding members 210
+            WriteLine(john.ToString());
+
+
+            //preventing inheritence and overriding 211-person.cs
+
+
+            //understanding polymorphism 212
+            /*
+            You have now seen two ways to change the behavior of an inherited method. We can
+            hide it using the new keyword (known as non-polymorphic inheritance), or we can
+            override it (known as polymorphic inheritance).
+            
+            Both ways can access members of the base class by using the base keyword, so what
+            is the difference?
+            
+            It all depends on the type of the variable holding a reference to the object.
+             */
+
+            Employee aliceInEmployee = new Employee
+            { Name = "Alice", EmployeeCode = "AA123" };
+            
+            Person aliceInPerson = aliceInEmployee;
+            
+            aliceInEmployee.WriteToConsole();
+
+            aliceInPerson.WriteToConsole();
+
+            WriteLine(aliceInEmployee.ToString());
+            
+            WriteLine(aliceInPerson.ToString());
+
+
+            //casting within inheritance hierarchies 213
+
+            //explicit casting 214
+            //Employee explicitAlice = (Employee)aliceInPerson;//(Employee) is added for casting
+
+
+            //avoiding casting exceptions 214
+            if (aliceInPerson is Employee)
+            {
+                WriteLine($"{nameof(aliceInPerson)} IS an Employee");
+                Employee explicitAlice = (Employee)aliceInPerson;
+                // safely do something with explicitAlice
+            }
+
+            Employee aliceAsEmployee = aliceInPerson as Employee;
+            if (aliceAsEmployee != null)
+            {
+                WriteLine($"{nameof(aliceInPerson)} AS an Employee");
+                // do something with aliceAsEmployee
+            }
+
+
 
 
 
@@ -301,9 +367,9 @@ namespace Basics
 
         //188
         private static void Damjan_Shout(object sender, EventArgs e)//8-
-        {
-            Person p = (Person)sender;
-            WriteLine($"{p.Name} is this angry: {p.AngerLevel}.");
-        }
+    {
+        Person p = (Person)sender;
+        WriteLine($"{p.Name} is this angry: {p.AngerLevel}.");
     }
+}
 }
