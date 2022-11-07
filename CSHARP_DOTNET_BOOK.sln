@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter5", "Chapter5\Chapte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacktLibrary", "Person\PacktLibrary.csproj", "{FE8A962C-66DF-418B-B758-57792654444A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter6", "Chapter6\Chapter6.csproj", "{F2594EBF-D44A-404B-A44A-9FC21BD890E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{FE8A962C-66DF-418B-B758-57792654444A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE8A962C-66DF-418B-B758-57792654444A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE8A962C-66DF-418B-B758-57792654444A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2594EBF-D44A-404B-A44A-9FC21BD890E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2594EBF-D44A-404B-A44A-9FC21BD890E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2594EBF-D44A-404B-A44A-9FC21BD890E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2594EBF-D44A-404B-A44A-9FC21BD890E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
