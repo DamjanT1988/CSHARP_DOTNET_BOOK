@@ -91,12 +91,12 @@ namespace Basics
 
             WriteLine("-------------------------------------------------------------------------------------------------");
 
-            //2conditional logical operators 76
+            //2conditional logical operators 76 - function at end
             WriteLine($"a & DoStuff() = {a & DoStuff()}");
             WriteLine($"b & DoStuff() = {b & DoStuff()}");
 
             WriteLine($"a && DoStuff() = {a && DoStuff()}");
-            WriteLine($"b && DoStuff() = {b && DoStuff()}");//does not call function
+            WriteLine($"b && DoStuff() = {b && DoStuff()}");//does not call , already false
 
             WriteLine("-------------------------------------------------------------------------------------------------");
 
@@ -187,12 +187,12 @@ namespace Basics
 
             WriteLine("-------------------------------------------------------------------------------------------------");
 
-        //switch... 82
-        /*
-         • The break keyword (like case 1 in the following code),
-        • Or the goto case keywords (like case 2 in the following code),
-        • Or they should have no statements (like case 3 in the following code).
-        */
+            //switch... 82
+            /*
+             • The break keyword (like case 1 in the following code),
+            • Or the goto case keywords (like case 2 in the following code),
+            • Or they should have no statements (like case 3 in the following code).
+            */
 
         A_label:
             var number = (new Random()).Next(1, 7);
@@ -288,19 +288,20 @@ namespace Basics
                 ok++;
             }
             while (password != "Pa$$w0rd" && ok != 3);
-            if (ok != 3)
+            if (ok == 3)
             {
-                WriteLine("Correct!");
+                WriteLine("Locked!");
             }
             else
             {
-                WriteLine("Låst");
+                WriteLine("Corrected!");
             }
             */
 
             //for
             /*
-             • An initializer expression, which executes once at the start of the loop.
+            
+            • An initializer expression, which executes once at the start of the loop.
             • A conditional expression, which that executes on every iteration at the start
             of the loop to check whether the looping should continue.
             • An iterator expression, which that executes on every loop at the bottom of
@@ -329,21 +330,23 @@ namespace Basics
             through or false if there are no more items.
             */
 
+
+
             WriteLine("-------------------------------------------------------------------------------------------------");
 
             //-----CASTING AND CONVERTING 89
             int a4 = 10;
             double b4 = a4; // an int can be safely cast into a double
-            WriteLine(b4);
+            WriteLine(b4); //10.0
 
             double c4 = 9.8;
             int d4 = (int)c4; ////int added // compiler gives an error for this line
-            WriteLine(d4);
+            WriteLine(d4); //rounds down to whole number - 9
 
 
             long e4 = 10;
             int f4 = (int)e4;
-            WriteLine($"e is {e4:N0} and f is {f4:N0}");
+            WriteLine($"e is {e4:N0} and f is {f4:N0}");//10 10
             e4 = long.MaxValue;
             f4 = (int)e4;
             WriteLine($"e is {e4:N0} and f is {f4:N0}");
@@ -353,33 +356,34 @@ namespace Basics
             //system.convert 92
             double g4 = 9.8;
             int h4 = ToInt32(g4);
-            WriteLine($"g is {g4} and h is {h4}");
+            WriteLine($"g is {g4} and h is {h4}");//9.8 & 10 - round up, maybe from 0.5
 
             WriteLine("-------------------------------------------------------------------------------------------------");
 
             //rounding numbers 92
             double[] doubles = new[]
             { 9.49, 9.5, 9.51, 10.49, 10.5, 10.51 };
-            foreach (double n in doubles)
+            foreach (double number3 in doubles)
             {
-                WriteLine($"ToInt({n}) is {ToInt32(n)}");
+                WriteLine($"ToInt({number3}) is {ToInt32(number3)}");
             }
 
             /*
             • It always rounds down if the decimal part is less than the midpoint .5.
             • It always rounds up if the decimal part is more than the midpoint .5.
-            • It will round up if the decimal part is the midpoint .5 and the non-decimal
-            part is odd, but it will round down if the non-decimal part is even.
+            • !!!!!!!!!! It will round up if the decimal part is the midpoint .5 and the non-decimal
+                         part is odd, but it will round down if the non-decimal part is even.
             */
 
-            foreach (double n in doubles)
+            foreach (double number4 in doubles)
             {
                 WriteLine(format:
                 "Math.Round({0}, 0, MidpointRounding.AwayFromZero) is {1}",
-                arg0: n,
-                arg1: Math.Round(value: n,
-                digits: 0,
-                mode: MidpointRounding.AwayFromZero));
+                arg0: number4,
+                arg1: Math.Round(
+                    value: number4,
+                    digits: 0,
+                    mode: MidpointRounding.AwayFromZero));
             }
 
             WriteLine("-------------------------------------------------------------------------------------------------");
@@ -387,10 +391,13 @@ namespace Basics
             //converting to string 94
             int number2 = 12;
             WriteLine(number2.ToString());
+
             bool boolean = true;
             WriteLine(boolean.ToString());
+            
             DateTime now = DateTime.Now;
             WriteLine(now.ToString());
+            
             object me = new object();
             WriteLine(me.ToString());
 
@@ -399,16 +406,21 @@ namespace Basics
             //binary to string 95
             // allocate array of 128 bytes
             byte[] binaryObject = new byte[128];
+
             // populate array with random bytes
-            (new Random()).NextBytes(binaryObject);
+            new Random().NextBytes(binaryObject);
+            
             WriteLine("Binary Object as bytes:");
+            
             for (int index = 0; index < binaryObject.Length; index++)
             {
                 Write($"{binaryObject[index]:X} ");
             }
-            WriteLine();
+
+            WriteLine(); WriteLine();
             // convert to Base64 string and output as text
             string encoded = Convert.ToBase64String(binaryObject);
+            
             WriteLine($"Binary Object as Base64: {encoded}");
 
             WriteLine("-------------------------------------------------------------------------------------------------");
@@ -416,7 +428,7 @@ namespace Basics
             //------PARSE TRINGS TO NUMBERS OR DATES AND TIMES 96
             int age4 = int.Parse("27");
             DateTime birthday = DateTime.Parse("4 July 1980");
-            WriteLine($"I was born {age} years ago.");
+            WriteLine($"I was born {age4} years ago.");
             WriteLine($"My birthday is {birthday}.");
             WriteLine($"My birthday is {birthday:D}.");
 
@@ -521,16 +533,6 @@ namespace Basics
             {
                 WriteLine("The code overflowed but I caught the exception.");
             }
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -16,6 +16,7 @@ namespace PacktLibrary
 {
     public static class StringExtensions
     {
+        //219
         public static bool IsValidEmail(this string input)
         {
             // use simple regular expression to check

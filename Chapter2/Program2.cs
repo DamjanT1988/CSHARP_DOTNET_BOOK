@@ -18,7 +18,7 @@ namespace Basics
             System.Data.DataSet ds;
             System.Net.Http.HttpClient client;
 
-            Console.WriteLine("OK");
+            WriteLine("OK");
 
             // loop through the assemblies that this app references
             foreach (var r in Assembly.GetEntryAssembly()
