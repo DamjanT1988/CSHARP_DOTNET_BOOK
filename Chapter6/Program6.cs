@@ -36,7 +36,7 @@ namespace Basics
     {
         static void Main(string[] args)
         {
-            //---SIMPLYFYING METHODS 181
+            //--SIMPLYFYING METHODS 181
 
             //implementing functionality using methods 182
             var damjan = new Person { Name = "Damjan" };
@@ -47,15 +47,17 @@ namespace Basics
             var baby1 = angelina.ProcreateWith(damjan);
 
             // call static method
-            var baby2 = Person.Procreate(damjan, jill);
+            var baby2 = Person.Procreate(damjan, jill);//the actual baby object stored in baby1/baby2
 
             WriteLine($"{damjan.Name} has {damjan.Children.Count} children.");
             WriteLine($"{angelina.Name} has {angelina.Children.Count} children.");
             WriteLine($"{jill.Name} has {jill.Children.Count} children.");
+            
             WriteLine(
             format: "{0}'s first child is named \"{1}\".",
             arg0: damjan.Name,
             arg1: damjan.Children[0].Name);
+
 
 
             //implementing functionality using operators 184
@@ -74,6 +76,7 @@ namespace Basics
 
             // call an operator
             var baby3 = damjan * angelina;
+
 
 
             //implementing functionality using local functions 185
@@ -95,7 +98,7 @@ namespace Basics
              */
 
 
-            //calling methods using delegates 186
+            //calling methods using delegates 186-187
             /*
             The other way to call or execute a method is to use a delegate. If you have used
             languages that support function pointers, then think of a delegate as being a typesafe
@@ -121,8 +124,8 @@ namespace Basics
             object sender, TEventArgs e);
              */
 
-            damjan.Shout = Damjan_Shout; //1- start listen
-
+            damjan.Shout = Damjan_Shout; //1- start listen -- method at end of file! -- hooked from
+            //shout = event
             damjan.Poke();
             damjan.Poke();
             damjan.Poke();
@@ -141,8 +144,9 @@ namespace Basics
 
 
             //--IMPLEMENTING INTERFACES 191
-
+                                 
             //comparing objects when sorting 192
+            //arry with objects
             Person[] people =
             {
             new Person { Name = "Simon" },
@@ -152,29 +156,38 @@ namespace Basics
             };
 
             WriteLine("Initial list of people:");
+            
             foreach (var person in people)
             {
                 WriteLine($"{person.Name}");
             }
 
             WriteLine("Use Person's IComparable implementation to sort: ");
+            
             Array.Sort(people);
+            
             foreach (var person in people)
             {
                 WriteLine($"{person.Name}");
             }
 
 
+            
             //comparing objects using a separate class 194
             WriteLine("Use PersonComparer's IComparer implementation to sort: ");
+            
+            //sort after length
             Array.Sort(people, new PersonComparer());
+            
             foreach (var person in people)
             {
                 WriteLine($"{person.Name}");
             }
+
 
 
             //defining interfaces with default implementations 195
+
 
 
             //making types safely reusable with generics 198
@@ -187,6 +200,7 @@ namespace Basics
             WriteLine($"Thing with a string: {t2.Process("apple")}");
 
 
+            
             //working with generic types 199
             var gt1 = new GenericThing<int>();
             gt1.Data = 42;
@@ -208,7 +222,8 @@ namespace Basics
              */
 
 
-            //working with generics method 201
+
+            //working with generics method 201--square.cs
             string number1 = "4";
             WriteLine("{0} squared is {1}",
             arg0: number1,
@@ -220,6 +235,7 @@ namespace Basics
             arg1: Squarer.Square(number2));
 
 
+
             //managing memory with reference and value types 202
             /*
             • Numbers: byte, sbyte, short, ushort, int, uint, long, ulong, float,
@@ -229,6 +245,7 @@ namespace Basics
              */
 
 
+
             //working with struct types 203
             var dv1 = new DisplacementVector(3, 5);
             var dv2 = new DisplacementVector(-2, 7);
@@ -236,6 +253,7 @@ namespace Basics
             WriteLine($"({dv1.X}, {dv1.Y}) + ({dv2.X}, {dv2.Y}) = ({dv3.X}, {dv3.Y})");
 
 
+            
             //releasing unmanaged resources 205-animal.cs
             /*
             In the previous chapter, we saw that constructors can be used to initialize fields and
@@ -253,6 +271,7 @@ namespace Basics
             }
 
 
+
             //inheriting from class 207-employee.cs
             Employee john = new Employee
             {
@@ -260,6 +279,7 @@ namespace Basics
                 DateOfBirth = new DateTime(1990, 7, 28)
             };
             john.WriteToConsole();
+
 
 
             //expanding classes 208
@@ -271,11 +291,13 @@ namespace Basics
             //hiding members 209--
 
 
+
             //overriding members 210
             WriteLine(john.ToString());
 
 
             //preventing inheritence and overriding 211-person.cs
+
 
 
             //understanding polymorphism 212
@@ -291,7 +313,9 @@ namespace Basics
              */
 
             Employee aliceInEmployee = new Employee
-            { Name = "Alice", EmployeeCode = "AA123" };
+            { 
+                Name = "Alice", EmployeeCode = "AA123" 
+            };
             
             Person aliceInPerson = aliceInEmployee;
             
@@ -304,10 +328,12 @@ namespace Basics
             WriteLine(aliceInPerson.ToString());
 
 
+            
             //casting within inheritance hierarchies 213
 
             //explicit casting 214
             //Employee explicitAlice = (Employee)aliceInPerson;//(Employee) is added for casting
+
 
 
             //avoiding casting exceptions 214
@@ -324,6 +350,7 @@ namespace Basics
                 WriteLine($"{nameof(aliceInPerson)} AS an Employee");
                 // do something with aliceAsEmployee
             }
+
 
 
             //--INHERTING AND EXTENDING .NET TYPES 215
@@ -344,6 +371,7 @@ namespace Basics
             {
                 WriteLine(ex.Message);
             }
+
 
 
             //EXTENDING TYPES WHEN YOU CAN'T INHERIT 217
@@ -370,6 +398,7 @@ namespace Basics
             arg1: StringExtensions.IsValidEmail(email2));
 
 
+
             //using extension methods to reuse functionality 219
             WriteLine(
             "{0} is a valid e-mail address: {1}",
@@ -387,35 +416,6 @@ namespace Basics
             as an overload in IntelliSense, but an instance method will be called in preference to
             an extension method with the same name and signature.
              */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         }
 

@@ -10,9 +10,8 @@ namespace PacktLibrary
 {
     public partial class Person : Object, IComparable<Person>//192
     {
-        //--STORING DATA WITHIN FIELDS 150
-
-        //FIELDS (properties)
+        //150
+        //--FIELDS
         public string Name;
         public DateTime DateOfBirth;
 
@@ -34,7 +33,10 @@ namespace PacktLibrary
         public readonly string HomePlanet = "Earth";
 
         public readonly DateTime Instantiated;
-        //CONSTRUCTORS
+
+        
+        
+        //--CONSTRUCTORS
         public Person()
         {
             // set default values for fields
@@ -50,8 +52,10 @@ namespace PacktLibrary
             Instantiated = DateTime.Now;
         }
 
+        
+        
         //163
-        //METHODS
+        //--METHODS
         public void WriteToConsole()
         {
             WriteLine($"{Name} was born on a {DateOfBirth:dddd}.");
@@ -61,6 +65,8 @@ namespace PacktLibrary
             return $"{Name} was born on {HomePlanet}.";
         }
 
+
+        
         //163-164
         //complex types
         public class TextAndNumber
@@ -87,11 +93,14 @@ namespace PacktLibrary
         }
 
 
+        
         //165
         public (string Name, int Number) GetNamedFruit()
         {
             return (Name: "Apples", Number: 5);
         }
+
+
 
         //166-167
         public string SayHello()
@@ -104,6 +113,8 @@ namespace PacktLibrary
             return $"{Name} says 'Hello {name}!'";
         }
 
+        
+        
         //168
         public string OptionalParameters(
             string command = "Run!",
@@ -115,6 +126,8 @@ namespace PacktLibrary
             arg0: command, arg1: number, arg2: active);
         }
 
+        
+        
         //170
         public void PassingParameters(int x2, ref int y2, out int z2)
         {
@@ -131,20 +144,20 @@ namespace PacktLibrary
 
         //182
         // static method to "multiply"
-        public static Person Procreate(Person p1, Person p2)
+        public static Person Procreate(Person p1, Person p2)//called parameters (not arguments)
         {
             var baby = new Person
             {
                 Name = $"Baby of {p1.Name} and {p2.Name}"
             };
-            p1.Children.Add(baby);
+            p1.Children.Add(baby);//baby object calleed Children collection
             p2.Children.Add(baby);
-            return baby;
+            return baby;//reference to baby stored in memory (not clone)
         }
         // instance method to "multiply"
         public Person ProcreateWith(Person partner)
         {
-            return Procreate(this, partner);
+            return Procreate(this, partner);//"this" references current instance of class
         }
 
         /*
@@ -158,9 +171,10 @@ namespace PacktLibrary
         °° In the instance method named ProcreateWith, the Person object
         to procreate with is passed as a parameter named partner, and it,
         along with this, is passed to the static Procreate method to reuse
-        the method implementation. this is a keyword that references the
+        the method implementation. "this" is a keyword that references the
         current instance of the class.
          */
+
 
 
         //184
@@ -170,24 +184,33 @@ namespace PacktLibrary
             return Person.Procreate(p1, p2);
         }
 
+
+
         //185
         // method with a local function
         public static int Factorial(int number)
         {
+            //check
             if (number < 0)
             {
                 throw new ArgumentException(
                 $"{nameof(number)} cannot be less than zero.");
             }
+            //return
             return localFactorial(number);
 
-            int localFactorial(int localNumber) // local function
+            // local function
+            int localFactorial(int localNumber)
             {
+                //check if 0
                 if (localNumber < 1) return 1;
+                //return
                 return localNumber * localFactorial(localNumber - 1);
             }
         }
 
+        
+        
         //187
         //delegate int DelegateWithMatchingSignature(string s);
 
@@ -217,15 +240,21 @@ namespace PacktLibrary
                 {
                     // ...then call the delegate
                     Shout(this, EventArgs.Empty);//7-
+
+                    //8-is a local private fubction in Program6
                 }
             }
         }
+
+
 
         //192
         public int CompareTo(Person? other)
         {
             return Name.CompareTo(other.Name);
         }
+
+
 
         //210
         // overridden methods
@@ -262,35 +291,6 @@ namespace PacktLibrary
                 WriteLine($"Welcome to {when:yyyy}!");
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

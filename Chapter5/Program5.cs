@@ -108,32 +108,37 @@ namespace Basics
         {
             //--INSTATIATING A CLASS
             //class "Person"->its namespace as reference from program & "using"
-
+            //new person, initialize
             var bob = new Person();
 
             //setting/outputting field values
             bob.Name = "Bob Smith";
             bob.DateOfBirth = new DateTime(1965, 12, 22);
+
             WriteLine(
             format: "{0} was born on {1:dddd, d MMMM yyyy}",
+            //from class
             arg0: bob.Name,
             arg1: bob.DateOfBirth);
 
-
+            //new person
             var alice = new Person
             {
                 Name = "Alice Jones",
                 DateOfBirth = new DateTime(1998, 3, 7)
             };
+
             WriteLine(
             format: "{0} was born on {1:dd MMM yy}",
             arg0: alice.Name,
             arg1: alice.DateOfBirth);
 
 
-            //.. enum.. 152
+
+            //.. enum.. 152-153
             bob.FavoriteAncientWonder =
-            WondersOfTheAncientWorld.StatueOfZeusAtOlympia;
+            WondersOfTheAncientWorld.StatueOfZeusAtOlympia;//another file/namespace (not class) from class
+
             WriteLine(format:
             "{0}'s favorite wonder is {1}. Its integer is {2}.",
             arg0: bob.Name,
@@ -141,35 +146,41 @@ namespace Basics
             arg2: (int)bob.FavoriteAncientWonder);
 
 
+
             //multiple values enum.. 154
             bob.BucketList =
-            WondersOfTheAncientWorld.HangingGardensOfBabylon|           
+            WondersOfTheAncientWorld.HangingGardensOfBabylon |
             WondersOfTheAncientWorld.MausoleumAtHalicarnassus;
             // bob.BucketList = (WondersOfTheAncientWorld)18;
+            
             WriteLine($"{bob.Name}'s bucket list is {bob.BucketList}");
 
 
+            
             //storing multiple values using collections
             bob.Children.Add(new Person { Name = "Alfred" });
-            bob.Children.Add(new Person { Name = "Zoe" });
+            bob.Children.Add(new Person { Name = "Zoe" });//using class fields for name
+            
             WriteLine(
             $"{bob.Name} has {bob.Children.Count} children:");
-            for (int child = 0; child < bob.Children.Count; child++)
+            
+            for (int i = 0; i < bob.Children.Count; i++)
             {
-                WriteLine($" {bob.Children[child].Name}");
+                WriteLine($" {bob.Children[i].Name}");
             }
+
 
 
             //field static 156
             BankAccount.InterestRate = 0.012M; // store a shared value
 
             var jonesAccount = new BankAccount();
-            jonesAccount.AccountName = "Mrs. Jones";
+            jonesAccount.AccountName = "Mrs. Jones";//values stored in object, in the memory of it
             jonesAccount.Balance = 2400;
 
             WriteLine(format: "{0} earned {1:C} interest.",
             arg0: jonesAccount.AccountName,
-            arg1: jonesAccount.Balance * BankAccount.InterestRate);
+            arg1: jonesAccount.Balance * BankAccount.InterestRate);//notice maths in arg..
 
             var gerrierAccount = new BankAccount();
             gerrierAccount.AccountName = "Ms. Gerrier";
@@ -180,14 +191,17 @@ namespace Basics
             arg1: gerrierAccount.Balance * BankAccount.InterestRate);
 
 
+            
             //field constant 158
-            //To get the value of a constant field, you must write the name of the class,
+            //To get the value of a constant field, you must write the name of the class!!
             //not the name of an instance of the class.
-            WriteLine($"{bob.Name} is a {Person.Species}");
+            WriteLine($"{bob.Name} is a {Person.Species}");//not bob.Species!!!!
+
 
 
             //read-only field 159
-            WriteLine($"{bob.Name} was born on {bob.HomePlanet}");
+            WriteLine($"{bob.Name} was born on {bob.HomePlanet}");//instance of class, is bob.
+
 
 
             //initializing fields with constructors 159
@@ -195,18 +209,20 @@ namespace Basics
 
             WriteLine(format:
             "{0} of {1} was created at {2:hh:mm:ss} on a {2:dddd}.",
-            arg0: blankPerson.Name,
-            arg1: blankPerson.HomePlanet,
-            arg2: blankPerson.Instantiated);
+            arg0: blankPerson.Name,//in the constructor
+            arg1: blankPerson.HomePlanet,//take from class fields
+            arg2: blankPerson.Instantiated);//in the constructor
 
             var gunny = new Person("Gunny", "Mars");
+
             WriteLine(format:
             "{0} of {1} was created at {2:hh:mm:ss} on a {2:dddd}.",
             arg0: gunny.Name,
             arg1: gunny.HomePlanet,
-            arg2: gunny.Instantiated);
+            arg2: gunny.Instantiated);//DateTime object "Instantiated" initiated
+                                      //in Person class as readonly field
 
-
+            
             //setting fields with default literals 161
 
 
@@ -214,32 +230,41 @@ namespace Basics
             /*
             Methods can return a single value or return nothing.
             • A method that performs some actions but does not return a value indicates
-            this with the void type before the name of the method.
+            this with the VOID TYPE before the name of the method.
             • A method that performs some actions and returns a value indicates this with
-            the type of the return value before the name of the method. 
+            the TYPE of the return VALUE before the name of the method. 
             */
 
 
+            
             //... 163
-            bob.WriteToConsole();
-            WriteLine(bob.GetOrigin());
+            bob.WriteToConsole(); //method in the class - writes it
+
+            WriteLine(bob.GetOrigin());//writes the other method
+
 
 
             //combining multiple returned values using tuples 163-164
             (string, int) fruit = bob.GetFruit();
+            
             WriteLine($"{fruit.Item1}, {fruit.Item2} there are.");
+
 
 
             //naming the fields of a tuple 165
             var fruitNamed = bob.GetNamedFruit();
+            
             WriteLine($"There are {fruitNamed.Number} {fruitNamed.Name}.");
+
 
 
             //inferring tuple names 165
             var thing1 = ("Neville", 4);
+            
             WriteLine($"{thing1.Item1} has {thing1.Item2} children.");
 
-            var thing2 = (bob.Name, bob.Children.Count);
+            var thing2 = (bob.Name, bob.Children.Count);//object saved in the memory already
+            
             WriteLine($"{thing2.Name} has {thing2.Count} children.");
 
 
@@ -257,15 +282,18 @@ namespace Basics
             WriteLine($"Deconstructed: {fruitName}, {fruitNumber}");
 
 
+            
             //defining and passing parameters to methods 166-167
             WriteLine(bob.SayHello());
             WriteLine(bob.SayHelloTo("Emily"));//även SayHello funkar
 
 
+            
             //overlaoding methods 167
             //WriteLine(bob.SayHello("Emily"));
 
 
+            
             //passing optional parameters and naming arguments 168
             WriteLine(bob.OptionalParameters("jump", 99.5));
 
@@ -301,19 +329,25 @@ namespace Basics
             int c6 = 30;
 
             WriteLine($"Before: a = {a6}, b = {b6}, c = {c6}");
+            
             bob.PassingParameters(a6, ref b6, out c6);
+            
             WriteLine($"After: a = {a6}, b = {b6}, c = {c6}");
 
             int d6 = 10;
             int e6 = 20;
+
             WriteLine(
             $"Before: d = {d6}, e = {e6}, f doesn't exist yet!");
             // simplified C# 7.0 syntax for the out parameter
+            
             bob.PassingParameters(d6, ref e6, out int f6);
+            
             WriteLine($"After: d = {d6}, e = {e6}, f = {f6}");
 
 
-            //splitting classes using partial 171
+            
+            //splitting classes using partial 171 -- part class of main/base/super Person class
 
             //173
             var sam = new Person
@@ -326,6 +360,7 @@ namespace Basics
             WriteLine(sam.Age);
 
 
+
             //175
             sam.FavoriteIceCream = "Chocolate Fudge";
 
@@ -336,51 +371,15 @@ namespace Basics
             WriteLine($"Sam's favorite primary color is {sam.FavoritePrimaryColor}.");
 
 
+
             //176
             sam.Children.Add(new Person { Name = "Charlie" });
             sam.Children.Add(new Person { Name = "Ella" });
 
             WriteLine($"Sam's first child is {sam.Children[0].Name}");
             WriteLine($"Sam's second child is {sam.Children[1].Name}");
-            WriteLine($"Sam's first child is {sam[0].Name}");
+            WriteLine($"Sam's first child is {sam[0].Name}");//indexers [] find it in partial class
             WriteLine($"Sam's second child is {sam[1].Name}");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
