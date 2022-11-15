@@ -302,6 +302,49 @@ namespace Basics
 
 
 
+        /*
+    //exceptions guard the system
+    //23 check if withdrawal is 0 or negative
+    if (amount <= 0)
+    {
+        //24 throw an exception (exceptional moment), otherwise stops the program as error
+        throw new ArgumentOutOfRangeException(nameof(amount), "Withdrawal amount must be positive");
+    }
+
+    //25 check if there is balance enough for withdrawal
+    if (Balance - amount <= 0)
+    {
+        //26 throw an exception, "invalid operations´"
+        throw new InvalidOperationException("Not sufficient funds for the withdrawal1");
+    }
+*/
+
+
+        //32 test the program, with exception the program continues in spite of error
+        /*
+        try
+        {
+            var invalidAccount = new BankAccount("invalid", -55);
+        }
+        //33 catch errors, e is target, in the catch code block
+        catch (ArgumentOutOfRangeException e)
+        {
+            Console.WriteLine("Exception caught creating account with negative balance");
+            Console.WriteLine(e.ToString());
+        }
+
+
+        //34 test of withdrawal (too much)
+        try
+        {
+            account.MakeWithDrawal(1000000, DateTime.Now, "Tesla car");
+        }
+        catch (InvalidOperationException e)
+        {
+            Console.WriteLine("Exception caught withdrawing too much funds/not enough balance");
+            Console.WriteLine(e.ToString());
+        }
+        */
 
 
 
