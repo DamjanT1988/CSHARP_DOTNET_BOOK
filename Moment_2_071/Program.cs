@@ -32,40 +32,53 @@ namespace KnowYourBirthDay
                 "den följande natten, var en tid lämpad för trollkonster och magiska åtgärder.'\n\n\n"
                 );
 
-            //get day input
-            Write("Enter the day number of your birth (1-31):");
-            //check the day, store
-            int day = CheckDay(Convert.ToInt32(CheckInput(ReadLine())));
+            string input = string.Empty;
 
-            //get month input
-            Write("Enter the month number of your birth (1-12):");
-            //check the month, store
-            int month = CheckMonth(Convert.ToInt32(CheckInput(ReadLine())));
-
-            //get year input
-            Write("Enter the year number of your birth (xxxx):");
-            //check the year, store
-            int year = CheckYear(Convert.ToInt32(CheckInput(ReadLine())));
-
-            //adjust the months
-            if (month < 3)
+            //run program more times if needed
+            do
             {
-                month += 12;
-                year -= 1;
-            }
+                //get day input
+                Write("Enter the day number of your birth (1-31):");
+                //check the day, store
+                int day = CheckDay(Convert.ToInt32(CheckInput(ReadLine())));
 
-            //get century
-            double century = Math.Floor(year / 100D);
+                //get month input
+                Write("Enter the month number of your birth (1-12):");
+                //check the month, store
+                int month = CheckMonth(Convert.ToInt32(CheckInput(ReadLine())));
 
-            //modulus of year
-            year %= 100;
+                //get year input
+                Write("Enter the year number of your birth (xxxx):");
+                //check the year, store
+                int year = CheckYear(Convert.ToInt32(CheckInput(ReadLine())));
 
-            //algorithm
-            double dayOfWeekGregorian = Math.Floor((day + (13 * (month + 1) / 5) + year + (year / 4) + (century / 4) - 2 * century) % 7);
+                //adjust the months
+                if (month < 3)
+                {
+                    month += 12;
+                    year -= 1;
+                }
 
-            //write the result
-            Write($"\n\n**********************************************************\n You are born on a " +
-                CalcDay(dayOfWeekGregorian) + "\n**********************************************************\n\n");
+                //get century
+                double century = Math.Floor(year / 100D);
+
+                //modulus of year
+                year %= 100;
+
+                //algorithm
+                double dayOfWeekGregorian = Math.Floor((day + (13 * (month + 1) / 5) + year + (year / 4) + (century / 4) - 2 * century) % 7);
+
+                //write the result
+                Write($"\n\n**********************************************************\n You are born on a " +
+                    CalcDay(dayOfWeekGregorian) + "\n**********************************************************\n\n");
+                
+                //read user input, if user wants to run it again
+                WriteLine("\nDo you want to run it again? (y/n)");
+                input = ReadLine();
+                //check user answer
+            } while (input == "y" || input == "Y");
+            
+            
         }
 
         //function to assign day to Zeller's number
