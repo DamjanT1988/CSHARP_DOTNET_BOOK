@@ -22,40 +22,44 @@ namespace Moment_3_071
 
             LoadFile(book);
 
+            //TEXT
+            WriteLine("                                  '||'''|. '||   ||` '||'''|. '||   ||`    '||'''|,  '||   ||` '||'''|,  '||   ||` \r\n                                   ||   ||  ||   ||   ||   ||  ||   ||      ||   ||   ||   ||   ||   ||   ||   ||  \r\n                                   ||   ||  ||   ||   ||   ||  ||   ||      ||;;;;    ||   ||   ||;;;;    ||   ||  \r\n                                   ||   ||  ||   ||   ||   ||  ||   ||      ||   ||   ||   ||   ||   ||   ||   ||  \r\n                                  .||...|'  `|...|'  .||...|'  `|...|'     .||...|'   `|...|'  .||...|'   `|...|'  \r\n                                                                                                                   \r\n                                                                                                                   \r\n");
+            WriteLine("                                                                \r\n                                           .oPYo. o    o .oPYo. .oPYo. ooooo  .oPYo. .oPYo. .oPYo.  o   o \r\n                                           8    8 8    8 8.     8        8    8   `8 8    8 8    8  8  .P \r\n                                           8      8    8 `boo   `Yooo.   8   o8YooP' 8    8 8    8 o8ob'  \r\n                                           8   oo 8    8 .P         `8   8    8   `b 8    8 8    8  8  `b \r\n                                           8    8 8    8 8           8   8    8    8 8    8 8    8  8   8 \r\n                                           `YooP8 `YooP' `YooP' `YooP'   8    8oooP' `YooP' `YooP'  8   8 \r\n                                           :....8 :.....::.....::.....:::..:::......::.....::.....::..::..\r\n                                           :::::8 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\r\n                                           :::::..::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+            WriteLine("\n\n");
+            /*WriteLine(
+                    "-- DUDU & BUBU GUESTBOOK --\n" +
+                    "**************************\n" +
+                    "*******MIUN EDITION****\n" +
+                    "*********HT*2022*****\n" +
+                    "******************\n" +
+                    "*****BUBU<3*****\n" +
+                    "*************\n\n"
+                );*/
+
             //MENU
             do
-            {
-                //TEXT
-                WriteLine(
-                        "---DUDU & BUBU GUESTBOOK---\n" +
-                        "**************************\n" +
-                        "*******MIUN EDITION****\n" +
-                        "*********HT*2022*****\n" +
-                        "******************\n" +
-                        "*****BUBU<3*****\n" +
-                        "*************\n"
-                    );
+            {           
 
-                WriteLine("\n////////////////////////////////////////////////////////////////////////\n\n" +
-                    book.GetList() +
-                    "\n////////////////////////////////////////////////////////////////////////");
+                WriteLine(book.GetList());
 
-                WriteLine("\n\nWhat do you want to do? \n\n" +
-                    "-> Type 1 to make a new post \n" +
-                    "-> Type 2 to delete a post \n\n" +
-                    "Type '0' to close the program");
+
+                WriteLine("\n\nWhat do you want to do? Enter..\n\n" +
+                    "-> 'C' to create a new post \n" +
+                    "-> 'D' to delete a post \n" +
+                    "-> 'X' to close the program\n");
                 option = CheckInput(ReadLine());
 
-                if (option == "1")
+                if (option.ToLower() == "c")
                 {
                     CreatePost(book);
                 }
 
-                if (option == "2")
+                if (option.ToLower() == "d")
                 {
                     DeletePost(book);
                 }
-            } while (option != "0");
+            } while (option.ToLower() != "x");
+
         }
 
         static void CreatePost(Guestbook book)
@@ -80,10 +84,17 @@ namespace Moment_3_071
             "Write the number of the post to delete:");
             int delete = Convert.ToInt32(CheckInput(ReadLine()));
 
-            book.PostItem.Remove(book[delete - 1]);
+            if (delete <= 0 || book.PostItem.Count < delete)
+            {
+                WriteLine("No such post number!");
+            } else
+            {
+                book.PostItem.Remove(book[delete - 1]);
+            }
 
             Clear();
 
+            book.SaveGuestbook();
         }
 
         static void LoadFile(Guestbook book)
@@ -102,7 +113,7 @@ namespace Moment_3_071
         {
             if (input == "")
             {
-                WriteLine("Please enter a valid number:");
+                WriteLine("Please enter a valid text:");
                 return CheckInput(ReadLine());
             }
             //if no error, send back input

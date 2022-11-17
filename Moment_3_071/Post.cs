@@ -37,13 +37,13 @@ namespace Moment_3_071
             //use a string builder, instead of using $"..."
             var report = new StringBuilder();
             //HEADER-make the table with AppendLine;  \t is a tab in line
-            report.AppendLine("#\tDate\t\tWriter\tContent");
+            report.AppendLine("#\tDate\t\tWriter\t\tContent \n-----------------------------------------------");
 
             //go through all transaction items
             for (int i = 0; i < PostItem.Count; i++)
             {
                 //ROWS-create the content 
-                report.AppendLine($"{i + 1}\t{PostItem[i].Date.ToShortDateString()}\t{PostItem[i].Writer}\t{PostItem[i].Content}");
+                report.AppendLine($"{i + 1}\t{PostItem[i].Date.ToShortDateString()}\t{PostItem[i].Writer}\t\t{PostItem[i].Content}");
             }
 
             //return as a string
