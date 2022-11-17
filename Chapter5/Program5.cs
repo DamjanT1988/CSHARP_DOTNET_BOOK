@@ -111,7 +111,7 @@ namespace Basics
             //new person, initialize
             var bob = new Person();
 
-            //setting/outputting field values
+            //setting/outputting field values 150
             bob.Name = "Bob Smith";
             bob.DateOfBirth = new DateTime(1965, 12, 22);
 
@@ -120,6 +120,8 @@ namespace Basics
             //from class
             arg0: bob.Name,
             arg1: bob.DateOfBirth);
+
+
 
             //new person
             var alice = new Person
