@@ -4,6 +4,7 @@ using System.Buffers;
 using System.Diagnostics.Metrics;
 using System.Reflection.Metadata;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
 using static System.Console;
 
 namespace Moment_3_071
@@ -18,6 +19,8 @@ namespace Moment_3_071
             Guestbook book = new Guestbook { };
 
             string option = string.Empty;
+
+            LoadFile(book);
 
             //MENU
             do
@@ -77,15 +80,27 @@ namespace Moment_3_071
             "Write the number of the post to delete:");
             int delete = Convert.ToInt32(CheckInput(ReadLine()));
 
-            book.PostItem.Remove(book[delete-1]);
+            book.PostItem.Remove(book[delete - 1]);
 
             Clear();
 
         }
 
+        static void LoadFile(Guestbook book)
+        {
+            string jsonString = File.ReadAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071/guestbook.json");
+
+            dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString);
+
+            for (int i = 0; i < obj.Count; i++)
+            {
+                book.PostItem.Add(new Guestbook { Writer = obj[i].Writer, Content = obj[i].Content, Date = obj[i].Date });
+            }
+        }
+
         static string CheckInput(string input)
         {
-            if (input == "") 
+            if (input == "")
             {
                 WriteLine("Please enter a valid number:");
                 return CheckInput(ReadLine());

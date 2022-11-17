@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Intrinsics.X86;
 using System.Net.Http.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Moment_3_071
 {
@@ -33,11 +34,6 @@ namespace Moment_3_071
 
         public string GetList()
         {
-            //string text = File.ReadAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071/guestbook.json");
-            //var person = JsonSerializer.Deserialize<Guestbook>(text);
-
-            //WriteLine(person.Writer);
-
             //use a string builder, instead of using $"..."
             var report = new StringBuilder();
             //HEADER-make the table with AppendLine;  \t is a tab in line
@@ -46,8 +42,8 @@ namespace Moment_3_071
             //go through all transaction items
             for (int i = 0; i < PostItem.Count; i++)
             {
-                //ROWS-create the content
-                report.AppendLine($"{i+1}\t{PostItem[i].Date.ToShortDateString()}\t{PostItem[i].Writer}\t{PostItem[i].Content}");
+                //ROWS-create the content 
+                report.AppendLine($"{i + 1}\t{PostItem[i].Date.ToShortDateString()}\t{PostItem[i].Writer}\t{PostItem[i].Content}");
             }
 
             //return as a string
@@ -56,7 +52,6 @@ namespace Moment_3_071
         public void SaveGuestbook()
         {
             string json = JsonSerializer.Serialize(PostItem);
-            //C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071\
             File.WriteAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071\guestbook.json", json);
         }
     }
