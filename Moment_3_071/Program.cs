@@ -12,17 +12,6 @@ namespace Moment_3_071
 
         static void Main(string[] args)
         {
-            //TEXT
-            WriteLine(
-                    "*****************************\n" +
-                    "DAMJAN'S AWESOME GUESTBOOK!\n" +
-                    "**************************\n" +
-                    "*******MIUN EDITION****\n" +
-                    "*********HT*2022*****\n" +
-                    "******************\n" +
-                    "****************\n" +
-                    "*************\n"
-                );
 
             //INSTANCE
             Guestbook book = new Guestbook { Owner = "Damjan", Content = "Awesome content" };
@@ -32,10 +21,22 @@ namespace Moment_3_071
             //MENU
             do
             {
-                WriteLine("//////////////////////" +
-                    "\nThe guestbook:\n" + book.GetList());
+                //TEXT
+                WriteLine(
+                        "DAMJAN'S AWESOME GUESTBOOK!\n" +
+                        "**************************\n" +
+                        "*******MIUN EDITION****\n" +
+                        "*********HT*2022*****\n" +
+                        "******************\n" +
+                        "*****BUBU<3*****\n" +
+                        "*************\n"
+                    );
 
-                WriteLine("What do you want to do? \n\n" +
+                WriteLine("\n////////////////////////////////////////////////////////////////////////\n\n" +
+                    book.GetList() +
+                    "\n////////////////////////////////////////////////////////////////////////");
+
+                WriteLine("\n\nWhat do you want to do? \n\n" +
                     "-> Type 1 to make a new post \n" +
                     "-> Type 2 to select to delete a post \n\n" +
                     "Type 0 to exit the program");
@@ -57,6 +58,8 @@ namespace Moment_3_071
             string content = ReadLine();
 
             book.PostItem.Add(new Guestbook { Owner = owner, Content = content });
+
+            Console.Clear();
         }
 
         static void DeletePost(Guestbook book)

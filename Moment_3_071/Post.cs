@@ -43,7 +43,7 @@ namespace Moment_3_071
             foreach (var item in PostItem)
             {
                 //ROWS-create the content
-                report.AppendLine($"{item.Date.ToShortDateString()}\t\t{item.Owner}\t\t{item.Content}");
+                report.AppendLine($"{item.Date.ToShortDateString()}\t{item.Owner}\t{item.Content}");
             }
             //return as a string
             return report.ToString();
