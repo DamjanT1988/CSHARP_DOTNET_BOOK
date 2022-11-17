@@ -3,73 +3,61 @@ using System;
 using System.Text;
 using System.Xml.Linq;
 using static System.Console;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Intrinsics.X86;
+using System.Net.Http.Json;
 
 namespace Moment_3_071
 {
     public partial class Guestbook
     {
         //FIELDS
-        public string Owner { get; set; } //max 50 letters
+        public string Writer { get; set; } //max 50 letters
 
         public string Content { get; set; } //max 15 words
 
-        public DateTime Date { get; set;  }
+        public DateTime Date { get; set; }
 
         public List<Guestbook> PostItem = new List<Guestbook>();
-
-        //public string Number { get; }
-
-        private static int postIntialNo = 1;
 
         //--CONSTRUCTORS
         public Guestbook()
         {
             // set default values for fields
             // including read-only fields
-            Owner = "Unknown";
+            Writer = "Unknown";
             Content = "Unknown";
             Date = DateTime.Now;
-            //Number = 
         }
 
         public string GetList()
         {
+            //string text = File.ReadAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071/guestbook.json");
+            //var person = JsonSerializer.Deserialize<Guestbook>(text);
+
+            //WriteLine(person.Writer);
+
             //use a string builder, instead of using $"..."
             var report = new StringBuilder();
             //HEADER-make the table with AppendLine;  \t is a tab in line
-            report.AppendLine("Date\t\tOwner\t\tContent");
+            report.AppendLine("#\tDate\t\tWriter\tContent");
 
             //go through all transaction items
-            foreach (var item in PostItem)
+            for (int i = 0; i < PostItem.Count; i++)
             {
                 //ROWS-create the content
-                report.AppendLine($"{item.Date.ToShortDateString()}\t{item.Owner}\t{item.Content}");
+                report.AppendLine($"{i+1}\t{PostItem[i].Date.ToShortDateString()}\t{PostItem[i].Writer}\t{PostItem[i].Content}");
             }
+
             //return as a string
             return report.ToString();
         }
-       
-        /*
-        public Post(string owner, string content, string date)
+        public void SaveGuestbook()
         {
-            Owner = owner;
-            Content = content;
-            Date = date;
-
-            this.Number = postIntialNo;
+            string json = JsonSerializer.Serialize(PostItem);
+            //C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071\
+            File.WriteAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071\guestbook.json", json);
         }
-        */
-
-        /*
-        public Post(string OwnerName, string ContentText)
-        {
-            this.Owner = OwnerName;
-            this.Content = ContentText;
-            this.Number = postIntialNo.ToString();
-            
-
-            postIntialNo++;
-        }
-        */
     }
 }

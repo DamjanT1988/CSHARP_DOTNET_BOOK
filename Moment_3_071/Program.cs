@@ -3,6 +3,7 @@ using System;
 using System.Buffers;
 using System.Diagnostics.Metrics;
 using System.Reflection.Metadata;
+using System.Text.Json;
 using static System.Console;
 
 namespace Moment_3_071
@@ -14,7 +15,7 @@ namespace Moment_3_071
         {
 
             //INSTANCE
-            Guestbook book = new Guestbook { Owner = "Damjan", Content = "Awesome content" };
+            Guestbook book = new Guestbook { };
 
             string option = string.Empty;
 
@@ -23,7 +24,7 @@ namespace Moment_3_071
             {
                 //TEXT
                 WriteLine(
-                        "DAMJAN'S AWESOME GUESTBOOK!\n" +
+                        "---DUDU & BUBU GUESTBOOK---\n" +
                         "**************************\n" +
                         "*******MIUN EDITION****\n" +
                         "*********HT*2022*****\n" +
@@ -38,70 +39,62 @@ namespace Moment_3_071
 
                 WriteLine("\n\nWhat do you want to do? \n\n" +
                     "-> Type 1 to make a new post \n" +
-                    "-> Type 2 to select to delete a post \n\n" +
-                    "Type 0 to exit the program");
-                option = ReadLine();
+                    "-> Type 2 to delete a post \n\n" +
+                    "Type '0' to close the program");
+                option = CheckInput(ReadLine());
 
                 if (option == "1")
                 {
                     CreatePost(book);
                 }
-            } while (option.ToLower() != "0");
+
+                if (option == "2")
+                {
+                    DeletePost(book);
+                }
+            } while (option != "0");
         }
 
         static void CreatePost(Guestbook book)
         {
-            WriteLine("\n\nCREATE NEW POST \n\n" +
+            WriteLine("\nCREATE NEW POST \n\n" +
                 "Who is writing:");
-            string owner = ReadLine();
+            string writer = CheckInput(ReadLine());
             WriteLine("\nWrite something awesome in the guestbook:");
-            string content = ReadLine();
+            string content = CheckInput(ReadLine());
 
-            book.PostItem.Add(new Guestbook { Owner = owner, Content = content });
+            book.PostItem.Add(new Guestbook { Writer = writer, Content = content });
 
-            Console.Clear();
+            Clear();
+
+            book.SaveGuestbook();
+
         }
 
         static void DeletePost(Guestbook book)
         {
+            WriteLine("\nDELETE A POST \n\n" +
+            "Write the number of the post to delete:");
+            int delete = Convert.ToInt32(CheckInput(ReadLine()));
+
+            book.PostItem.Remove(book[delete-1]);
+
+            Clear();
 
         }
 
-
-        /*
-            WriteLine("Who is writing");
-            string owner = ReadLine();
-            WriteLine("Write something awesome in the guestbook:");
-            string content = ReadLine();
-            */
-
-        //Globals.book;
-
-        //Globals.book.PostItem.Add(new Guestbook { Owner = owner, Content = content });
-
-        /*
-        WriteLine("Who is writing");
-        owner = ReadLine();
-        WriteLine("Write something awesome in the guestbook:");
-        content = ReadLine();
-        */
-
-
-        //Globals.counter++;
-
-        //Post[] posts = {};
-
-        /*
-        WriteLine("Who is writing");
-        owner = ReadLine();
-        WriteLine("Write something awesome in the guestbook:");
-        content = ReadLine();
-        posts.Children.Add(new Post { Owner = owner, Content = content });
-        */
-        /*
-        CreatePost(); 
-        CreatePost(); 
-        CreatePost();
-        CreatePost();*/
+        static string CheckInput(string input)
+        {
+            if (input == "") 
+            {
+                WriteLine("Please enter a valid number:");
+                return CheckInput(ReadLine());
+            }
+            //if no error, send back input
+            else
+            {
+                return input;
+            }
+        }
     }
 }
