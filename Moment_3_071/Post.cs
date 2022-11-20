@@ -13,16 +13,21 @@ namespace Moment_3_071
 {
     public partial class Guestbook
     {
-        //FIELDS
+        //---FIELDS
+        
         public string Writer { get; set; } //max 50 letters
 
         public string Content { get; set; } //max 15 words
 
         public DateTime Date { get; set; }
 
+        //new list för Guestbook object 
         public List<Guestbook> PostItem = new List<Guestbook>();
 
-        //--CONSTRUCTORS
+
+
+        //---CONSTRUCTORS
+        //create a new object upon instance
         public Guestbook()
         {
             // set default values for fields
@@ -32,12 +37,16 @@ namespace Moment_3_071
             Date = DateTime.Now;
         }
 
+
+
+        //---METHODS
+        //methods for printing the list
         public string GetList()
         {
             //use a string builder, instead of using $"..."
             var report = new StringBuilder();
             //HEADER-make the table with AppendLine;  \t is a tab in line
-            report.AppendLine("#\tDate\t\tWriter\t\tContent \n-----------------------------------------------");
+            report.AppendLine("#\tDate\t\tWriter\t\t  Content \n------------------------------------------------------------------------");
 
             //go through all transaction items
             for (int i = 0; i < PostItem.Count; i++)
@@ -49,9 +58,13 @@ namespace Moment_3_071
             //return as a string
             return report.ToString();
         }
+
+        //save the list to a file
         public void SaveGuestbook()
         {
+            //serialize the list to a variable
             string json = JsonSerializer.Serialize(PostItem);
+            //write the JSON list to a file
             File.WriteAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071\guestbook.json", json);
         }
     }
