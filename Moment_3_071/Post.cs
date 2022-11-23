@@ -17,7 +17,7 @@ namespace Moment_3_071
         
         public string Writer { get; set; } //max 50 letters
 
-        public string Content { get; set; } //max 15 words
+        public string Content { get; set; } //max 150 letters
 
         public DateTime Date { get; set; }
 

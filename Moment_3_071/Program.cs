@@ -11,7 +11,7 @@ namespace Moment_3_071
 {
     class Program
     {
-
+        //start/main function
         static void Main(string[] args)
         {
             //---INSTANCE - use object 
