@@ -65,7 +65,7 @@ namespace Moment_3_071
             //serialize the list to a variable
             string json = JsonSerializer.Serialize(PostItem);
             //write the JSON list to a file
-            File.WriteAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071\guestbook.json", json);
+            File.WriteAllText(@Directory.GetCurrentDirectory().ToString() + "/guestbook.json", json);
         }
     }
 }

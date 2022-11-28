@@ -129,7 +129,7 @@ namespace Moment_3_071
         static void LoadFile(Guestbook book)
         {
             //read text from file, store in a variable as JSON-string
-            string jsonString = File.ReadAllText(@"C:\kodprojekt\CSHARP_DOTNET_BOOK\Moment_3_071/guestbook.json");
+            string jsonString = File.ReadAllText(Directory.GetCurrentDirectory().ToString() + "/guestbook.json");
 
             //deserialize the JSON-string
             dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString);
