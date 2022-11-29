@@ -8,7 +8,7 @@ using static System.Console;
 //207
 namespace PacktLibrary
 {
-    public class Employee : Person
+    public class Employee : Person//inherits from person
     {
         //PROPERTIES
         public string EmployeeCode { get; set; }

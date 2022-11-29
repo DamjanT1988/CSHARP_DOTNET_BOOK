@@ -239,7 +239,7 @@ namespace PacktLibrary
                     // ...then call the delegate
                     Shout(this, EventArgs.Empty);//7-
 
-                    //8-is a local private fubction in Program6
+                    //8-is a local private function at end in Program6
                 }
             }
         }

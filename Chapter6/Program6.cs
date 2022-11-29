@@ -383,7 +383,7 @@ namespace Basics
             extension methods, which was introduced with C# 3.0.
              */
 
-            //using static methods to reuse functionality 217
+            //using static methods to reuse functionality 217--StringExtension.cs
             string email1 = "pamela@test.com";
             string email2 = "ian&test.com";
             
