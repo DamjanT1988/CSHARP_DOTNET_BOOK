@@ -159,7 +159,7 @@ namespace Basics
 
 
             
-            //storing multiple values using collections
+            //storing multiple values using collections 155
             bob.Children.Add(new Person { Name = "Alfred" });
             bob.Children.Add(new Person { Name = "Zoe" });//using class fields for name
             
@@ -173,7 +173,7 @@ namespace Basics
 
 
 
-            //field static 156
+            //field static 156-157
             BankAccount.InterestRate = 0.012M; // store a shared value
 
             var jonesAccount = new BankAccount();
@@ -240,7 +240,7 @@ namespace Basics
 
             
             //... 163
-            bob.WriteToConsole(); //method in the class - writes it
+            bob.WriteToConsole(); //method in the person class - writes it
 
             WriteLine(bob.GetOrigin());//writes the other method
 
@@ -307,9 +307,9 @@ namespace Basics
             //controlling how parameters are passed 170
             /*
              When a parameter is passed into a method, it can be passed in one of three ways:
-            • By value (this is the default): Think of these as being in-only.
-            • By reference as a ref parameter: Think of these as being in-and-out.
-            • As an out parameter: Think of these as being out-only
+            • By value (this is the default): Think of these as being IN-ONLY. A
+            • By reference as a ref parameter: Think of these as being IN-AND-OUT. B
+            • As an out parameter: Think of these as being OUT-ONLY. C
 
             When passing a variable as a parameter by default, its current value gets
             passed, not the variable itself. Therefore, x is a copy of the a variable. The
@@ -343,13 +343,14 @@ namespace Basics
             $"Before: d = {d6}, e = {e6}, f doesn't exist yet!");
             // simplified C# 7.0 syntax for the out parameter
             
-            bob.PassingParameters(d6, ref e6, out int f6);
+            bob.PassingParameters(d6, ref e6, out int f6);//OUT-ONLY always gets back
             
             WriteLine($"After: d = {d6}, e = {e6}, f = {f6}");
 
 
             
-            //splitting classes using partial 171 -- part class of main/base/super Person class
+            //splitting classes using partial 171 -- part PersonAutoGen class of
+            //main/base/super Person class
 
             //173
             var sam = new Person
@@ -382,9 +383,6 @@ namespace Basics
             WriteLine($"Sam's second child is {sam.Children[1].Name}");
             WriteLine($"Sam's first child is {sam[0].Name}");//indexers [] find it in partial class
             WriteLine($"Sam's second child is {sam[1].Name}");
-
-
-
         }
     }
 }

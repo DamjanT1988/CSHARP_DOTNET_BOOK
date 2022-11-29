@@ -44,7 +44,7 @@ namespace PacktLibrary
             Name = "Unknown";
             Instantiated = DateTime.Now;
         }
-
+        //159
         public Person(string initialName, string homePlanet)
         {
             Name = initialName;
@@ -85,8 +85,6 @@ namespace PacktLibrary
                 };
             }
         }
-
-        //tuples
         public (string, int) GetFruit()
         {
             return ("Apples", 5);

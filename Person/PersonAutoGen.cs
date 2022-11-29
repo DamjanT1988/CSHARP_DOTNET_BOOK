@@ -37,11 +37,11 @@ namespace PacktLibrary
         
         // two properties defined using C# 6+ lambda expression syntax
         public string Greeting => $"{Name} says 'Hello!'";
-        public int Age => System.DateTime.Today.Year - DateOfBirth.Year;
+        public int Age => System.DateTime.Today.Year - DateOfBirth.Year;//minus
 
 
 
-        //defining settable properties 17
+        //defining settable properties 175
         public string FavoriteIceCream { get; set; } // auto-syntax
 
         private string favoritePrimaryColor;
