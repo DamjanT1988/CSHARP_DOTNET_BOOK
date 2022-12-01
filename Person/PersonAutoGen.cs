@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 /*
  A property is simply a method (or a pair of methods) that acts and looks like a field
 when you want to get or set a value, thereby simplifying the syntax
-
-
  */
 
 namespace PacktLibrary
@@ -37,7 +35,7 @@ namespace PacktLibrary
         
         // two properties defined using C# 6+ lambda expression syntax
         public string Greeting => $"{Name} says 'Hello!'";
-        public int Age => System.DateTime.Today.Year - DateOfBirth.Year;//minus
+        public int Age => DateTime.Today.Year - DateOfBirth.Year;//minus
 
 
 

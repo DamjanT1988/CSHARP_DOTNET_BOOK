@@ -18,6 +18,7 @@ have, including fields to store data and methods to perform actions. You will us
 OOP concepts such as aggregation and encapsulation. You will also learn about
 language features such as tuple syntax support, out variables, inferred tuple names,
 and default literals.
+
 This chapter will cover the following topics:
 • Talking about OOP
 • Building class libraries
@@ -365,13 +366,13 @@ namespace Basics
 
 
             //175
-            sam.FavoriteIceCream = "Chocolate Fudge";
+            sam.FavoriteIceCream = "Chocolate Fudge";//SET
 
-            WriteLine($"Sam's favorite ice-cream flavor is {sam.FavoriteIceCream}.");
+            WriteLine($"Sam's favorite ice-cream flavor is {sam.FavoriteIceCream}.");//GET
 
-            sam.FavoritePrimaryColor = "Red";
+            sam.FavoritePrimaryColor = "GREEN";//SET
 
-            WriteLine($"Sam's favorite primary color is {sam.FavoritePrimaryColor}.");
+            WriteLine($"Sam's favorite primary color is {sam.FavoritePrimaryColor}.");//GET
 
 
 
